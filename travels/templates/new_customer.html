@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+	<!--begin::Portlet-->
+	<div class="kt-portlet">
+		<div class="kt-portlet__head">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">
+				{{ form_title }}
+				</h3>
+			</div>
+		</div>
+		<!--begin::Form-->
+		<form class="kt-form" method="POST">
+			{% csrf_token %}
+			<div class="kt-portlet__body">
+				
+				<div class="form-group">
+					{{ form.as_p }}
+				</div>
+			</div>
+			<div class="kt-portlet__foot">
+				<div class="kt-form__actions">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-secondary">Cancel</button>
+				</div>
+			</div>
+		</form>
+		<!--end::Form-->
+	</div>
+	<!--end::Portlet-->
+{% endblock %}
