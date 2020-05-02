@@ -12,9 +12,9 @@ class Booking(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     place = models.CharField(max_length=25)
     opendate = models.DateField()
-    openreading = models.CharField(max_length=8)
+    openreading = models.IntegerField()
     closedate = models.DateField()
-    closereading = models.CharField(max_length=8)
+    closereading = models.IntegerField()
 
     # Metadata
     class Meta: 

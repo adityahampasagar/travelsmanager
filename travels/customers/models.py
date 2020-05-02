@@ -8,7 +8,7 @@ class Customer(models.Model):
     address = models.TextField()
     mobile_number = models.CharField(max_length=13)
     email = models.EmailField(max_length=100, blank=True, default='')
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
 
     # Metadata
     class Meta: 

@@ -69,18 +69,19 @@
       <div class="kt-portlet__body">
         <!--begin: Datatable -->
         <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-          
+
           <thead>
             <tr>
               <th>ID</th>
               <th>Vehicle Registration</th>
               <th>Make</th>
               <th>Model</th>
-              <th>Owner's Name</th>
-              <th>Registration Date</th>
               <th>Insurance Expiry</th>
-              <th>Emission Expiry</th>
+              <th>Road Tax Expiry</th>
+              <th>Fitness Expiry</th>
+              <th>Authorization Expiry</th>
               <th>Permit Expiry</th>
+              <th>Emission Expiry</th>
             </tr>
           </thead>
           <tbody>
@@ -90,11 +91,12 @@
                 <td>{{vehicle.registration}}</td>
                 <td>{{vehicle.make}}</td>
                 <td>{{vehicle.model}}</td>
-                <td>{{vehicle.owner_name}}</td>
-                <td>{{vehicle.registration_date}}</td>
                 <td>{{vehicle.insurance_expiry}}</td>
-                <td>{{vehicle.emission_expiry}}</td>
+                <td>{{vehicle.road_tax_expiry}}</td>
+                <td>{{vehicle.fitness_expiry}}</td>
+                <td>{{vehicle.authorization_expiry}}</td>
                 <td>{{vehicle.permit_expiry}}</td>
+                <td>{{vehicle.emission_expiry}}</td>
               </tr>
             {% endfor %}
           </tbody>

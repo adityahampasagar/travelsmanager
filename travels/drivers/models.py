@@ -10,6 +10,7 @@ class Driver(models.Model):
     email = models.EmailField(max_length=100, blank=True, default='')
     license_expiry = models.DateField()
     badge_expiry = models.DateField()
+    created = models.DateField(auto_now_add=True)
 
     # Metadata
     class Meta: 

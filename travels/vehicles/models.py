@@ -10,8 +10,11 @@ class Vehicle(models.Model):
     owner_name = models.CharField(max_length=50)
     registration_date = models.DateField()
     insurance_expiry = models.DateField()
-    emission_expiry = models.DateField()
+    road_tax_expiry = models.DateField()
+    fitness_expiry = models.DateField()
+    authorization_expiry = models.DateField()
     permit_expiry = models.DateField()
+    emission_expiry = models.DateField()
 
     # Metadata
     class Meta: 
