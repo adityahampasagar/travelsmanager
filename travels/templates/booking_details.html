@@ -33,59 +33,62 @@
 						<!--begin::Widget -->
 						<div class="kt-widget kt-widget--user-profile-1">
 							<div class="kt-widget__head">
-								<div class="kt-widget__media">
-									<img src="{% static 'assets/media/users/100_13.jpg' %}" alt="image">
-								</div>
 								<div class="kt-widget__content">
 									<div class="kt-widget__section">
 										<a href="#" class="kt-widget__username">
-											{{ vehicle.registration }}
+											Booking Id: {{ booking.id }}
 										</a>
-										<span class="kt-widget__subtitle">
-											{{ vehicle.make }} {{ vehicle.model }}
-										</span>
 									</div>
 									<div class="kt-widget__action">
-										<a href="{% url 'edit_booking' pk=booking.pk %}"><button type="button" class="btn btn-info btn-sm">Edit</button></a>&nbsp;
-										<button type="button" class="btn btn-dark btn-sm">Delete</button>
+										<a href="{% url 'edit_booking' pk=booking.pk %}"><button type="button" class="btn btn-info btn-sm">Edit Basic Info</button></a>&nbsp;
+										<a href="{% url 'edit_booking_extended' pk=booking.pk %}"><button type="button" class="btn btn-dark btn-sm">Edit Financial Info</button></a>
 									</div>
 								</div>
 							</div>
 							<div class="kt-widget__body">
 								<div class="kt-widget__content">
 									<div class="kt-widget__info">
-										<span class="kt-widget__label">Owner's Name:</span>
-										<a href="#" class="kt-widget__data">{{ vehicle.owner_name}}</a>
+										<span class="kt-widget__label">Customer Name:</span>
+										<a href="#" class="kt-widget__data">{{ booking.customer }}</a>
 									</div>
 									<div class="kt-widget__info">
-										<span class="kt-widget__label">Registration Date:</span>
-										<a href="#" class="kt-widget__data">{{vehicle.registration_date}}</a>
+										<span class="kt-widget__label">Vehicle:</span>
+										<a href="#" class="kt-widget__data">{{ booking.vehicle }}</a>
 									</div>
 									<div class="kt-widget__info">
-										<span class="kt-widget__label">Insurance Expiry:</span><br>
-										<span class="kt-widget__data" style="width:50%; text-align: right;">{{ vehicle.insurance_expiry }}</span>
+										<span class="kt-widget__label">Driver:</span>
+										<a href="#" class="kt-widget__data">{{ booking.driver }}</a>
 									</div>
 									<div class="kt-widget__info">
-										<span class="kt-widget__label">Emission Expiry:</span><br>
-										<span class="kt-widget__data" style="width:50%; text-align: right;">{{ vehicle.emission_expiry}}</span>
+										<span class="kt-widget__label">Start Date:</span>
+										<span class="kt-widget__data">{{ booking.opendate }}</span>
 									</div>
 									<div class="kt-widget__info">
-										<span class="kt-widget__label">Permit Expiry:</span><br>
-										<span class="kt-widget__data" style="width:50%; text-align: right;">{{ vehicle.permit_expiry}}</span>
+										<span class="kt-widget__label">Close Date:</span>
+										<span class="kt-widget__data">{{ booking.closedate }}</span>
 									</div>
+									<div class="kt-widget__info">
+										<span class="kt-widget__label">Open Reading:</span>
+										<span class="kt-widget__data">{{ booking.openreading }}</span>
+									</div>
+									<div class="kt-widget__info">
+										<span class="kt-widget__label">Close Reading:</span>
+										<span class="kt-widget__data">{{ booking.closereading }}</span>
+									</div>
+									
 								</div>
 								<div class="kt-widget__items">
 									<a href="custom/apps/user/profile-1/overview.html" class="kt-widget__item kt-widget__item--active">
 										<span class="kt-widget__section">
 											<span class="kt-widget__desc">
-												Profile Overview
+												Booking Overview
 											</span>
 										</span>
 									</a>
 									<a href="custom/apps/user/profile-1/personal-information.html" class="kt-widget__item ">
 										<span class="kt-widget__section">
 											<span class="kt-widget__desc">
-												Personal Information
+												Financial Information
 											</span>
 										</span>
 									</a>
@@ -123,34 +126,14 @@
 									<div class="kt-widget12__content">
 										<div class="kt-widget12__item">
 											<div class="kt-widget12__info">
-												<span class="kt-widget12__desc">Lifetime Order Value</span>
-												<span class="kt-widget12__value">Rs. 1,00,000</span>
+												<span class="kt-widget12__desc">Booking Duration</span>
+												<span class="kt-widget12__value">{{booking.duration}}</span>
 											</div>
 											<div class="kt-widget12__info">
-												<span class="kt-widget12__desc">Driver Since</span>
-												<span class="kt-widget12__value">July 24,2019</span>
+												<span class="kt-widget12__desc">Total Running</span>
+												<span class="kt-widget12__value">{{booking.running}} KM</span>
 											</div>
 										</div>
-										<div class="kt-widget12__item">
-											<div class="kt-widget12__info">
-												<span class="kt-widget12__desc">Average Order Size</span>
-												<span class="kt-widget12__value">Rs. 3,862.71</span>
-											</div>
-											<div class="kt-widget12__info">
-												<span class="kt-widget12__desc">Revenue Margin</span>
-												<div class="kt-widget12__progress">
-													<div class="progress kt-progress--sm">
-														<div class="progress-bar kt-bg-brand" role="progressbar" style="width: 40%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
-													<span class="kt-widget12__stat">
-														40%
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="kt-widget12__chart" style="height:250px;">
-										<canvas id="kt_chart_order_statistics"></canvas>
 									</div>
 								</div>
 							</div>
@@ -158,7 +141,53 @@
 						<!--end:: Widgets/Order Statistics-->
 					</div>
 					<div class="col-xl-6">
-						
+						<!--begin:: Widgets/Order Statistics-->
+						<div class="kt-portlet kt-portlet--height-fluid">
+							<div class="kt-portlet__head">
+								<div class="kt-portlet__head-label">
+									<h3 class="kt-portlet__head-title">
+									Financial Information
+									</h3>
+								</div>
+							</div>
+							<div class="kt-portlet__body kt-portlet__body--fluid">
+								<div class="kt-widget12">
+									<div class="kt-widget12__content">
+										<div class="kt-widget12__item">
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Pending Amount</span>
+												<span style= "color: red" class="kt-widget12__value">Rs. {{booking_extended.amount_pending}}</span>
+											</div>
+										</div>
+										<div class="kt-widget12__item">
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Total Amount Receivable</span>
+												<span class="kt-widget12__value">Rs. {{booking_extended.amount_receivable}}</span>
+											</div>
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Total Amount Received</span>
+												<span class="kt-widget12__value">Rs. {{booking_extended.amount_received}}</span>
+											</div>
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Booking Expenses</span>
+												<span style= "color: #0571F7" class="kt-widget12__value">Rs. {{booking_extended.booking_expenses}}</span>
+											</div>
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Our actual Income</span>
+												<span style= "color: green" class="kt-widget12__value">Rs. {{booking_extended.our_income}}</span>
+											</div>
+										</div>
+										<div class="kt-widget12__item">
+											<div class="kt-widget12__info">
+												<span class="kt-widget12__desc">Amount Breakdown / Description</span>
+												<span class="kt-widget12__value">{{booking_extended.receivable_breakdown}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end:: Widgets/Order Statistics-->
 					</div>
 				</div>
 			</div>

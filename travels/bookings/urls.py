@@ -6,4 +6,5 @@ urlpatterns = [
 	path('<int:pk>/', views.booking_details, name='booking_details'),
 	path('new/', views.new_booking, name='new_booking'),
 	path('edit/<int:pk>/', views.edit_booking, name='edit_booking'),
+	path('fedit/<int:pk>/', views.edit_booking_extended, name='edit_booking_extended'),
 ]

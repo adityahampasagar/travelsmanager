@@ -28,3 +28,25 @@ class Booking(models.Model):
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return str(self.id)
+
+    @property
+    def duration(self):
+        return self.closedate - self.opendate
+
+    def running(self):
+        return self.closereading - self.openreading
+    
+
+class Booking_Extended(models.Model):
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE, primary_key=True)
+    amount_receivable = models.IntegerField()
+    amount_received = models.IntegerField()
+    booking_expenses = models.IntegerField()
+    receivable_breakdown = models.TextField()
+
+    @property
+    def amount_pending(self):
+        return self.amount_receivable - self.amount_received
+
+    def our_income(self):
+        return self.amount_receivable - self.booking_expenses
